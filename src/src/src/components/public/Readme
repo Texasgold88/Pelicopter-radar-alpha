@@ -1,1 +1,20 @@
+# 🦅 Pelicopter Protocol – JusticeRadar (Alpha Build)
 
+> “Stealing In Silence Stops Here”
+
+A tactical dashboard for monitoring decoy traps, bait reactions, and burn logs in the DeFi skies.
+
+---
+
+## 🚀 Live Preview
+After Netlify deployment, your live site will appear here.
+
+---
+
+## 🔧 Local Setup (for developers)
+
+### 1. Clone & Install
+```bash
+git clone [your repo link]
+cd pelicopter-radar-alpha
+npm install
