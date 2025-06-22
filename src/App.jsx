@@ -56,11 +56,28 @@ const App = () => {
         {filtered.length === 0 ? (
           <p>No creeps detected.</p>
         ) : (
-          filtered.map(creep => (
-            <li key={creep.id} style={{ marginBottom: "0.75rem" }}>
-              <strong>{creep.name}</strong> ({creep.wallet}) – {creep.reason}
-            </li>
-          ))
+          
+            filtered.map(creep => (
+  <li key={creep.id} style={{ marginBottom: "0.75rem" }}>
+    <strong>{creep.name}</strong> ({creep.wallet}) – {creep.reason}
+    <br />
+    <button
+      style={{
+        marginTop: "0.25rem",
+        padding: "0.4rem 1rem",
+        fontSize: "0.9rem",
+        background: "#222",
+        color: "#fff",
+        border: "1px solid #444",
+        borderRadius: "4px",
+        cursor: "pointer"
+      }}
+      onClick={() => alert(`ETH bounty contributed for ${creep.name}`)}
+    >
+      🪙 Contribute ETH to Bounty
+    </button>
+  </li>
+))
         )}
       </ul>
 
