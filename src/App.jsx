@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import mockCreeps from './data/mockCreeps'
-
+import WalletConnect from './components/WalletConnect'
 const App = () => {
   const [query, setQuery] = useState('')
   const [filtered, setFiltered] = useState(mockCreeps)
