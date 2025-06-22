@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import mockCreeps from './data/mockCreeps'
 
 const App = () => {
   const [query, setQuery] = useState('')
   const [filtered, setFiltered] = useState(mockCreeps)
+  const [alerts, setAlerts] = useState([])
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -16,9 +17,23 @@ const App = () => {
     setFiltered(result)
   }
 
+  // Simulate new alerts every few seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newAlert = mockCreeps[Math.floor(Math.random() * mockCreeps.length)]
+      const timestamp = new Date().toLocaleTimeString()
+      setAlerts(prev => [
+        { ...newAlert, timestamp },
+        ...prev.slice(0, 9)
+      ])
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <div style={{ padding: "2rem", color: "#fff", background: "#121212", minHeight: "100vh" }}>
-      <h1>JusticeRadar: Creep Watch</h1>
+    <div style={{ padding: "2rem", color: "#fff", background: "#121212", minHeight: "100vh", fontFamily: "monospace" }}>
+      <h1>🦅 JusticeRadar: Creep Watch</h1>
 
       <form onSubmit={handleSearch} style={{ marginBottom: "1rem" }}>
         <input
@@ -48,6 +63,21 @@ const App = () => {
           ))
         )}
       </ul>
+
+      <hr style={{ margin: "2rem 0", borderColor: "#333" }} />
+
+      <h2 style={{ marginBottom: "1rem" }}>📢 Dynamic Threat Alerts</h2>
+      <div style={{ maxHeight: "200px", overflowY: "auto", background: "#1d1d1d", padding: "1rem", borderRadius: "6px" }}>
+        {alerts.length === 0 ? (
+          <p>No alerts yet.</p>
+        ) : (
+          alerts.map((alert, idx) => (
+            <div key={idx} style={{ marginBottom: "0.75rem", borderBottom: "1px solid #333", paddingBottom: "0.5rem" }}>
+              <strong>{alert.timestamp}</strong> – <span style={{ color: "#ff4444" }}>{alert.name}</span> ({alert.wallet}) flagged for <em>{alert.reason}</em>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   )
 }
