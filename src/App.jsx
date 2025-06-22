@@ -34,7 +34,7 @@ const App = () => {
   return (
     <div style={{ padding: "2rem", color: "#fff", background: "#121212", minHeight: "100vh", fontFamily: "monospace" }}>
       <h1>🦅 JusticeRadar: Creep Watch</h1>
-
+<WalletConnect />
       <form onSubmit={handleSearch} style={{ marginBottom: "1rem" }}>
         <input
           type="text"
